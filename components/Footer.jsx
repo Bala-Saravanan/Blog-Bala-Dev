@@ -10,7 +10,7 @@ export default function Footer() {
         {/* Logo and Description */}
         <div>
           <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
-            Bala's Blog
+            Bala@Dev - Blog
           </h2>
           <p className="mt-2 text-sm">
             A personal blog sharing my developer journey, projects, and
@@ -44,28 +44,28 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-semibold mb-3">Connect</h3>
           <div className="flex gap-4 text-xl">
-            <a
+            <Link
               href="https://www.linkedin.com/in/bala-saravanan-j/"
               target="_blank"
               rel="noreferrer"
               className="hover:text-purple-600"
             >
               <FaLinkedin />
-            </a>
-            <a
+            </Link>
+            <Link
               href="https://github.com/Bala-Saravanan"
               target="_blank"
               rel="noreferrer"
               className="hover:text-purple-600"
             >
               <FaGithub />
-            </a>
-            <a
+            </Link>
+            <Link
               href="mailto:jbalasaravanan174@gmail.com"
               className="hover:text-purple-600"
             >
               <FaEnvelope />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

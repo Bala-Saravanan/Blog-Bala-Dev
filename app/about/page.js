@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function AboutPage() {
   return (
     <main className="max-w-3xl mx-auto px-6 py-28">
@@ -25,18 +27,19 @@ export default function AboutPage() {
       </p>
 
       <div className="flex flex-col sm:flex-row gap-4">
-        <a
+        <Link
           href="https://www.linkedin.com/in/bala-saravanan-j/"
+          target="_blank"
           className="px-6 py-2 text-white bg-purple-600 hover:bg-purple-700 rounded-lg text-center transition"
         >
           LinkedIn
-        </a>
-        <a
+        </Link>
+        <Link
           href="/contact"
           className="px-6 py-2 border border-purple-600 text-purple-600 hover:bg-purple-50 rounded-lg text-center transition"
         >
           Contact Me
-        </a>
+        </Link>
       </div>
     </main>
   );

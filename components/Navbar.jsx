@@ -7,6 +7,7 @@ import { FaSquareGithub } from "react-icons/fa6";
 import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
 import { IoIosMenu } from "react-icons/io";
 import { IoMdClose } from "react-icons/io";
+import NavLink from "./NavLink";
 
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -56,9 +57,9 @@ const Navbar = () => {
           <ul className="hidden sm:flex gap-6 font-medium pl-10">
             {navItems.map(({ link, href }, index) => (
               <li key={index}>
-                <Link href={href} className="hover:text-purple-600">
+                <NavLink href={href} className="hover:text-purple-600">
                   {link}
-                </Link>
+                </NavLink>
               </li>
             ))}
           </ul>
