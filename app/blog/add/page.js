@@ -1,24 +1,35 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 
 export default function AddBlogPage() {
   const form = useRef();
   const router = useRouter();
-  const [isAuthorized, setIsAuthorized] = useState(false);
+  // const [isAuthorized, setIsAuthorized] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // Authorization check (super simple – email based)
-  useEffect(() => {
-    const userEmail = localStorage.getItem("userEmail");
-    if (userEmail === process.env.NEXT_PUBLIC_USER_EMAIL) {
-      setIsAuthorized(true);
-    } else {
-      router.push("/"); // redirect if not authorized
-    }
-  }, [router]);
+  // // Authorization check (super simple – email based)
 
+  // useEffect(() => {
+  //   const fetchAdmin = async () => {
+  //     try {
+  //       const res = await fetch("/api/admin");
+  //       const data = await res.json();
+
+  //       if (data && data.user_email === process.env.NEXT_PUBLIC_USER_EMAIL) {
+  //         setIsAuthorized(true);
+  //       } else {
+  //         router.push("/");
+  //       }
+  //     } catch (err) {
+  //       console.error("Failed to load admin data:", err);
+  //       router.push("/");
+  //     }
+  //   };
+
+  //   fetchAdmin();
+  // }, [router]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -68,7 +79,7 @@ export default function AddBlogPage() {
     router.push("/");
   };
 
-  if (!isAuthorized) return null;
+  // if (!isAuthorized) return null;
 
   return (
     <main className="max-w-3xl mx-auto px-6 py-28">
