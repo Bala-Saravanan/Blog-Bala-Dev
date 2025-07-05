@@ -5,7 +5,7 @@ export default function Home() {
     <div>
       <div className="md:text-center mt-28">
         <h1 className="font-extrabold text-3xl md:text-5xl xl:text-7xl leading-[2.5rem] md:leading-[5rem] xl:leading-[7rem]">
-          Hi It's{" "}
+          Hi It&apos;s{" "}
           <span className="text-purple-600 shadow-lg shadow-purple-400">
             Bala@Dev.
           </span>{" "}

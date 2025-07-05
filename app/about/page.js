@@ -14,9 +14,9 @@ export default function AboutPage() {
 
       <p className="text-lg mb-4 leading-relaxed">
         This blog is my personal space where I document what I learn, the
-        projects I build, and the mistakes I grow from. Whether it's a new
-        framework, an exciting side project, or just some dev thoughts — you'll
-        find it here.
+        projects I build, and the mistakes I grow from. Whether it&apos;s a new
+        framework, an exciting side project, or just some dev thoughts —
+        you&apos;ll find it here.
       </p>
 
       <p className="text-lg mb-8 leading-relaxed">

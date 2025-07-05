@@ -42,7 +42,7 @@ export default function ContactPage() {
 
       {sent && (
         <div className="mb-6 p-4 bg-green-100 rounded">
-          Thanks for reaching out! I'll respond shortly.
+          Thanks for reaching out! I&apos;ll respond shortly.
         </div>
       )}
 
