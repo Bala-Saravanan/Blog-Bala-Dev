@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 
-export default async function AddBlogPage() {
+export default function AddBlogPage() {
   const form = useRef();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
