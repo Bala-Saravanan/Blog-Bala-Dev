@@ -4,11 +4,12 @@ export default function AboutPage() {
       <h1 className="text-4xl font-bold mb-6">About Me</h1>
 
       <p className="text-lg mb-4 leading-relaxed">
-        Hi! 👋 I’m <span className="font-semibold">Bala Saravanan</span>, a
-        passionate student developer who loves building web applications and
-        sharing my journey through code. I’m currently focused on mastering
-        frontend technologies like React, Tailwind CSS, and exploring backend
-        with Node.js and MongoDB.
+        Hi! 👋I&apos;m
+        <span className="font-semibold">Bala Saravanan</span>, a passionate
+        student developer who loves building web applications and sharing my
+        journey through code. I’m currently focused on mastering frontend
+        technologies like React, Tailwind CSS, and exploring backend with
+        Node.js and MongoDB.
       </p>
 
       <p className="text-lg mb-4 leading-relaxed">
