@@ -1,40 +1,24 @@
-"use client";
+// "use client";
 
 import BlogGrid from "@/components/BlogGrid";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
-const Blogs = () => {
-  const [blogs, setBlogs] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchBlog = async () => {
-      try {
-        setLoading(true);
-        const res = await fetch("/api/blog/get");
-        if (!res.ok) throw new Error("Failed to fetch blogs");
-        const data = await res.json();
-        setBlogs(data);
-      } catch (error) {
-        console.error(error);
-        setError(error?.message || "Something went wrong");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchBlog();
-  }, []);
-
-  if (error) {
-    return <p className="text-center py-10 text-red-500">{error}</p>;
+async function getAllBlogs(page) {
+  const res = await fetch(`http://localhost:3000/api/blog/get?page=${page}`, {
+    cache: "no-cache",
+  });
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
   }
-  if (loading) {
-    return <p className="text-center py-10">Loading...</p>;
-  }
+  return res.json();
+}
+
+const Blogs = async ({ page }) => {
+  const { blogs, totalCount } = await getAllBlogs(page);
+
   return (
     <div>
-      <BlogGrid blogs={blogs} />
+      <BlogGrid blogs={blogs} page={page} totalCount={totalCount} />
     </div>
   );
 };

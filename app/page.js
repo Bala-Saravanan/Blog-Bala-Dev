@@ -1,6 +1,8 @@
 import Blogs from "./blog/page";
 
-export default function Home() {
+export default async function Home({ searchParams }) {
+  const page = parseInt(await searchParams?.page) || 1;
+
   return (
     <div>
       <div className="md:text-center mt-28">
@@ -21,7 +23,7 @@ export default function Home() {
         </h1>
       </div>
       <div>
-        <Blogs />
+        <Blogs page={page} />
       </div>
     </div>
   );
