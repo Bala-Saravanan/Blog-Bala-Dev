@@ -4,7 +4,7 @@ export default function AboutPage() {
       <h1 className="text-4xl font-bold mb-6">About Me</h1>
 
       <p className="text-lg mb-4 leading-relaxed">
-        Hi! 👋I&apos;m
+        Hi! I&apos;m
         <span className="font-semibold">Bala Saravanan</span>, a passionate
         student developer who loves building web applications and sharing my
         journey through code. I’m currently focused on mastering frontend
@@ -26,10 +26,10 @@ export default function AboutPage() {
 
       <div className="flex flex-col sm:flex-row gap-4">
         <a
-          href="/projects"
+          href="https://www.linkedin.com/in/bala-saravanan-j/"
           className="px-6 py-2 text-white bg-purple-600 hover:bg-purple-700 rounded-lg text-center transition"
         >
-          View My Projects
+          LinkedIn
         </a>
         <a
           href="/contact"
