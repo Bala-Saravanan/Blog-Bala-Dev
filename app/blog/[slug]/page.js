@@ -1,43 +1,21 @@
-"use client";
-
-import { useParams } from "next/navigation";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 
-export default function BlogDetailPage() {
-  const { slug } = useParams();
-
-  const [blogs, setBlogs] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchBlog = async () => {
-      try {
-        setLoading(true);
-        const res = await fetch("/api/blog/get");
-        const data = await res.json();
-        setBlogs(data);
-      } catch (error) {
-        console.log(error);
-        setError(error?.message || "Something went wrong");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchBlog();
-  }, []);
-  const blog = blogs.find((b) => b.slug === slug);
-
-  if (!blog) {
-    return <p className="text-center py-10 text-red-500">Blog not found</p>;
+async function getBlogBySlug(slug) {
+  const res = await fetch(
+    `${process.env.NEXT_API_URL}/api/blog/get/?slug=${slug}`,
+    {
+      cache: "no-cache",
+    }
+  );
+  if (!res.ok) {
+    throw new Error("Failed to fetch blog");
   }
-  if (error) {
-    return <p className="text-center py-28 text-red-500">{error}</p>;
-  }
-  if (loading) {
-    return <p className="text-center py-28">Loading...</p>;
-  }
+
+  return res.json();
+}
+export default async function BlogDetailPage({ params }) {
+  const { slug } = params;
+  const { blog } = await getBlogBySlug(slug);
 
   return (
     <main className="max-w-3xl mx-auto px-6 py-16">
