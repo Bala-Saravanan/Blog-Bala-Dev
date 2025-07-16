@@ -1,5 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import { marked } from "marked";
+import { JSDOM } from "jsdom";
+import createDOMPurify from "dompurify";
+
+marked.setOptions({
+  breaks: true,
+});
 
 async function getBlogBySlug(slug) {
   const res = await fetch(
@@ -15,8 +22,15 @@ async function getBlogBySlug(slug) {
   return res.json();
 }
 export default async function BlogDetailPage({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
   const { blog } = await getBlogBySlug(slug);
+
+  const cleanMarkdown = blog.content.replace(/\\n/g, "\n");
+
+  const dirtyHTML = marked(cleanMarkdown);
+  const window = new JSDOM("").window;
+  const DOMPurify = createDOMPurify(window);
+  const safeHTML = DOMPurify.sanitize(dirtyHTML);
 
   return (
     <div className="max-w-3xl mx-auto px-6 py-16">
@@ -51,8 +65,8 @@ export default async function BlogDetailPage({ params }) {
           </div>
         </div>
 
-        <article className="prose max-w-none mt-8">
-          <p>{blog.content}</p>
+        <article className="prose prose-lg dark:prose-invert">
+          <div dangerouslySetInnerHTML={{ __html: safeHTML }} />
         </article>
       </main>
     </div>

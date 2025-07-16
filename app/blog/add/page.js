@@ -57,6 +57,12 @@ export default function AddBlogPage() {
     router.push("/");
   };
 
+  const access = localStorage.getItem("admin");
+  if (access !== "granted") {
+    alert("Not authenticated");
+    router.push("/");
+  }
+
   return (
     <main className="max-w-3xl mx-auto px-6 py-28">
       <h1 className="text-3xl font-bold mb-6">Add New Blog</h1>

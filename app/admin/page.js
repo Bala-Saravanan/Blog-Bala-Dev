@@ -29,6 +29,7 @@ const AdminLogin = () => {
 
       const data = await res.json();
       if (data.message === "Success") {
+        localStorage.setItem("admin", "granted");
         router.push("/blog/add");
       } else {
         setErrorMsg("Invalid credentials");
