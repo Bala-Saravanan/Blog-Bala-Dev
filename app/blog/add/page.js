@@ -1,12 +1,20 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export default function AddBlogPage() {
   const form = useRef();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const access = localStorage.getItem("admin");
+    if (access !== "granted") {
+      alert("Not authenticated");
+      router.push("/");
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,12 +64,6 @@ export default function AddBlogPage() {
     alert("Blog created!");
     router.push("/");
   };
-
-  const access = localStorage.getItem("admin");
-  if (access !== "granted") {
-    alert("Not authenticated");
-    router.push("/");
-  }
 
   return (
     <main className="max-w-3xl mx-auto px-6 py-28">
