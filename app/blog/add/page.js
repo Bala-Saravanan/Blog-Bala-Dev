@@ -62,12 +62,20 @@ export default function AddBlogPage() {
 
     setLoading(false);
     alert("Blog created!");
-    router.push("/");
+    router.push("/admin/dashboard");
   };
 
   return (
     <main className="max-w-3xl mx-auto px-6 py-28">
-      <h1 className="text-3xl font-bold mb-6">Add New Blog</h1>
+      <div className="flex justify-between items-center">
+        <h1 className="text-3xl font-bold mb-6">Add New Blog</h1>
+        <button
+          onClick={() => router.push("/admin/dashboard")}
+          className="mb-6 text-lg px-5 py-1 rounded-full border-2 border-purple-600 text-purple-600 bg-transparent hover:bg-purple-600 hover:text-white"
+        >
+          Back
+        </button>
+      </div>
       <form ref={form} onSubmit={handleSubmit} className="space-y-6">
         <input
           type="text"
