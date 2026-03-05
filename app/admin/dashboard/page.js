@@ -5,17 +5,21 @@ import Link from "next/link";
 
 export default function Dashboard() {
   const [blogs, setBlogs] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
-  async function fetchBlogs() {
-    const res = await fetch("/api/blog/get");
+  async function fetchBlogs(page = 1) {
+    const res = await fetch(`/api/blog/get?page=${page}`);
     const data = await res.json();
+    console.log(data);
     setBlogs(data.blogs);
-    console.log(data.blogs);
+    setTotalPages(Math.floor(data.totalCount / 2));
+    console.log(totalPages);
   }
 
   useEffect(() => {
-    fetchBlogs();
-  }, []);
+    fetchBlogs(page);
+  }, [page]);
 
   async function deleteBlog(id) {
     const confirmDelete = confirm("Delete this blog?");
@@ -72,6 +76,36 @@ export default function Dashboard() {
           ))}
         </tbody>
       </table>
+      {/* Pagination */}
+      <div className="flex justify-center gap-2 mt-8">
+        <button
+          disabled={page === 1}
+          onClick={() => setPage(page - 1)}
+          className="px-3 py-1 border rounded disabled:opacity-40"
+        >
+          Prev
+        </button>
+
+        {Array.from({ length: totalPages }, (_, i) => (
+          <button
+            key={i}
+            onClick={() => setPage(i + 1)}
+            className={`px-3 py-1 border rounded ${
+              page === i + 1 ? "bg-purple-600 text-white" : ""
+            }`}
+          >
+            {i + 1}
+          </button>
+        ))}
+
+        <button
+          disabled={page === totalPages}
+          onClick={() => setPage(page + 1)}
+          className="px-3 py-1 border rounded disabled:opacity-40"
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 }
