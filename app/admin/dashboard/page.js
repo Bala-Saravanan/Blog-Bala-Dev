@@ -11,10 +11,8 @@ export default function Dashboard() {
   async function fetchBlogs(page = 1) {
     const res = await fetch(`/api/blog/get?page=${page}`);
     const data = await res.json();
-    console.log(data);
     setBlogs(data.blogs);
     setTotalPages(Math.floor(data.totalCount / 2));
-    console.log(totalPages);
   }
 
   useEffect(() => {
