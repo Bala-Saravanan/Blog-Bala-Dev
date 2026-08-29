@@ -1,7 +1,10 @@
 import Blogs from "./blog/page";
 
 export default async function Home({ searchParams }) {
-  const page = parseInt(await searchParams?.page) || 1;
+  const params = await searchParams;
+  const page = parseInt(params?.page) || 1;
+  const search = params?.search || "";
+  const tag = params?.tag || "";
 
   return (
     <div>
@@ -23,7 +26,7 @@ export default async function Home({ searchParams }) {
         </h1>
       </div>
       <div>
-        <Blogs page={page} />
+        <Blogs page={page} search={search} tag={tag} />
       </div>
     </div>
   );

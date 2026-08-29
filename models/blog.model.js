@@ -13,6 +13,7 @@ const blogSchema = new mongoose.Schema(
     content: { type: String, required: [true, "content is required"] },
     tags: [{ type: String, required: [true, "tags are required"] }],
     image: { type: String, required: [true, "image is required"] },
+    likes: { type: Number, default: 0, min: 0 },
   },
   {
     timestamps: true,
@@ -27,6 +28,10 @@ blogSchema.pre("save", function (next) {
   next();
 });
 
-const Blog = mongoose.models.Blog || mongoose.model("Blog", blogSchema);
+if (mongoose.models && mongoose.models.Blog) {
+  delete mongoose.models.Blog;
+}
+
+const Blog = mongoose.model("Blog", blogSchema);
 
 export default Blog;

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { marked } from "marked";
 import { JSDOM } from "jsdom";
 import createDOMPurify from "dompurify";
+import LikeButton from "@/components/LikeButton";
 
 marked.setOptions({
   breaks: true,
@@ -52,15 +53,27 @@ export default async function BlogDetailPage({ params }) {
 
         <div className="mb-4">
           <h1 className="text-4xl font-bold mb-2">{blog.title}</h1>
-          <p className="text-sm">{new Date(blog.createdAt).toDateString()}</p>
+          <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+            <span>
+              {blog.createdAt
+                ? new Date(blog.createdAt).toDateString()
+                : "Recent"}
+            </span>
+            <LikeButton
+              blogId={blog?._id || blog?.slug}
+              initialLikes={blog?.likes || 0}
+              size="sm"
+            />
+          </div>
           <div className="flex flex-wrap gap-2 mt-3">
             {blog.tags.map((tag, i) => (
-              <span
+              <Link
                 key={i}
-                className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded-full"
+                href={`/?tag=${encodeURIComponent(tag)}`}
+                className="text-xs bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-300 hover:bg-purple-200 dark:hover:bg-purple-900/70 px-2.5 py-1 rounded-full transition-colors"
               >
                 #{tag}
-              </span>
+              </Link>
             ))}
           </div>
         </div>
