@@ -30,6 +30,7 @@ const AdminLogin = () => {
       const data = await res.json();
       if (data.message === "Success") {
         localStorage.setItem("admin", "granted");
+        window.dispatchEvent(new Event("adminAuthChange"));
         router.push("/admin/dashboard");
       } else {
         setErrorMsg("Invalid credentials");
